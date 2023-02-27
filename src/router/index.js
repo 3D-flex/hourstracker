@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import store from '../store/index';
+/*import store from '../store/index';*/
 
 const routes = [
   {
@@ -21,7 +21,14 @@ const routes = [
   },
   {
     path: "/app/",
-    meta: {requiresLogin: true}
+    meta: {requiresLogin: true},
+    children:  [
+      {
+        path: "dashboard",
+        name: "Dashboard",
+        component: () => import("../containers/Dashboard/Dashboard")
+      }
+    ]
   }
 ]
 
@@ -30,7 +37,7 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiresLogin)) {
     if (store.getters["user/getUser"])
       return next();
@@ -38,6 +45,6 @@ router.beforeEach((to, from, next) => {
   }
 
   return next();
-})
+})*/
 
 export default router

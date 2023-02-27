@@ -11,7 +11,7 @@
         <label for="pass" class="form-label">Password</label>
         <input type="password" class="form-control" id="pass">
       </div>
-      <button type="submit" class="btn btn-primary" @click="register">Submit</button>
+      <button type="submit" class="btn btn-primary" @click="login">Submit</button>
     </form>
   </div>
 </template>
@@ -20,14 +20,13 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required, email } from '@vuelidate/validators'
 
-import {mapActions} from "vuex";
+/*import {mapActions} from "vuex";*/
 
 export default {
   name: "Login",
   data() {
     return {
       v$: useVuelidate(),
-
       payload: {
         email: null,
         password: null,
@@ -44,7 +43,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
+    async login() {
+
+    }
+
+
+  }
+   /* ...mapActions({
       registerUser: "user/register"
     }),
 
@@ -56,7 +61,7 @@ export default {
         await this.registerUser(this.payload);
       }
     }
-  }
+  }*/
 }
 </script>
 
