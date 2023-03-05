@@ -2,11 +2,16 @@
   <div>
     <form>
       <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Meno zamestnanca</label>
+        <input type="userName" v-model="payload.name" class="form-control" id="name">
+      </div>
+      <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input type="email" v-model="payload.email" class="form-control" id="exampleInputEmail1">
       </div>
       <div class="mb-3">
         <label for="pass" class="form-label">Password</label>
+        <p>*Heslo musí obsahovať aspoň 8 znakov a musí obsahovať jedno písmeno a aspoň jedno číslo*</p>
         <input type="password" v-model="payload.password" class="form-control" id="pass">
       </div>
       <div class="mb-3">
@@ -27,6 +32,7 @@ export default {
   data() {
     return {
       payload: {
+        name: null,
         email: null,
         password: null,
         passwordAgain: null
@@ -45,7 +51,8 @@ export default {
             .then((userCredential) => {
               // Signed in
               this.user = userCredential.user;
-              localStorage.setItem("user", this.user);
+              this.user.displayName = this.payload.name;
+              localStorage.setItem("user", JSON.stringify(this.user));
 
               console.log(this.user);
 

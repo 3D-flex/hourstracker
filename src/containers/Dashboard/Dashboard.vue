@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import user from "@/store/modules/user";
+
 export default {
   name: "Dashboard",
   data() {
@@ -13,7 +15,9 @@ export default {
     }
   },
   created() {
-    this.user = localStorage.getItem("user");
+    this.user = JSON.parse(localStorage.getItem("user"));
+
+    console.log(user)
 
     if(!this.user)
       this.$router.push({name: "Login"});
